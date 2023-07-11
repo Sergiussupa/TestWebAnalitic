@@ -5,7 +5,7 @@
 <code>mysql -u root -p ( для решения этой задани я пользовался этой терминальной командой)
 source values.sql ( демонстрация работы этого скрипта на скриншоте ниже )
 source clear.sql ( сделал clear на всякий случай )
-В итоге выводится две суммы не органического трафика google и yandex. </code>
+В итоге выводится две суммы неорганического трафика google и yandex. </code>
 <hr>
 <img src="https://github.com/Sergiussupa/TestWebAnalitic/blob/main/misc/screenQuest4.png">
 <br><br>
