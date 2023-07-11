@@ -1,0 +1,44 @@
+<html>
+	<head>
+	<title>Quest3</title>
+	</head>
+	<body>
+		<script>
+			function outputUTM(string, target) {
+				let start = string.indexOf(target);
+				let len = target.length;
+				let last = string.indexOf('&', start+len);
+				return string.slice(start+len, last);
+
+			}
+			let url1 = "https://bestbuyshop.ru/catalog?utm_source=facebook&" +
+			"utm_medium=cpc&utm_campaign={campaign_id}&utm_term={keyword}";
+			
+			let flag = 0; // Если в названии сайта есть 'yclid=', то условие сработает.
+				      /* Перед написание этого кода, я смотрел несколько примеров других людей
+				         из интернета. Но решил сделать более простой вариант, который
+					 первым изначально пришел в голову. Реализовать что то более сложное
+					 не является проблемой */
+
+			if (url1.indexOf('yclid=')) {
+				flag = 1;
+			}
+			let medium = outputUTM(url1, 'utm_medium=');
+			let source = outputUTM(url1, 'utm_source=');
+				console.log(source);
+
+			if ( source == 'yandex' && medium == "organic" ) {
+				/* Если трафик был органический, источник yandex  */
+				document.cookie = "cook1= yandex / organic;"
+			} else if ( (source == 'yandex' &&  medium == "cpc") || flag )) {
+				/* Если трафик был cpc, источник yandex */
+				document.cookie = "cook1= yandex / cpc;"
+			} else if ( document.referrer === "") {
+				/* Как и было описанно во втором пункте.
+				   Если трафик прямой, то есть referrer равен
+				   пустой строке, то сделать такую cockie */
+				document.cookie = "cook1= yandex / organic;"
+			}
+		</script>
+	</body>
+	</html>
