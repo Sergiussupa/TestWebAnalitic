@@ -9,9 +9,11 @@
 				let len = target.length;
 				let last = string.indexOf('&', start+len);
 				return string.slice(start+len, last);
-
 			}
 			let url1 = "https://bestbuyshop.ru/catalog?utm_source=facebook&" +
+			"utm_medium=cpc&utm_campaign={campaign_id}&utm_term={keyword}";
+
+			let url2 = "https://bestbuyshop.ru/catalog?utm_source=yandex&" +
 			"utm_medium=cpc&utm_campaign={campaign_id}&utm_term={keyword}";
 			
 			let flag = 0; // Если в названии сайта есть 'yclid=', то условие сработает.
@@ -20,24 +22,27 @@
 					 первым изначально пришел в голову. Реализовать что то более сложное
 					 не является проблемой */
 
-			if (url1.indexOf('yclid=')) {
+			if (url1.indexOf('yclid=') != -1) {
 				flag = 1;
 			}
 			let medium = outputUTM(url1, 'utm_medium=');
 			let source = outputUTM(url1, 'utm_source=');
 				console.log(source);
 
+			alert(document.referrer);
+
 			if ( source == 'yandex' && medium == "organic" ) {
-				/* Если трафик был органический, источник yandex  */
-				document.cookie = "cook1= yandex / organic;"
-			} else if ( (source == 'yandex' &&  medium == "cpc") || flag )) {
-				/* Если трафик был cpc, источник yandex */
-				document.cookie = "cook1= yandex / cpc;"
+				/* если трафик был органический, источник yandex  */
+				document.cookie = "cook1= yandex/organic;"
+			} else if ( (source == 'yandex' &&  medium == "cpc") || flag) {
+				/* если трафик был cpc, источник yandex */
+				document.cookie = "cook1= yandex/cpc;"
 			} else if ( document.referrer === "") {
-				/* Как и было описанно во втором пункте.
-				   Если трафик прямой, то есть referrer равен
+				alert('Ты работаешь?');
+				/* как и было описанно во втором пункте.
+				   если трафик прямой, то есть referrer равен
 				   пустой строке, то сделать такую cockie */
-				document.cookie = "cook1= yandex / organic;"
+				document.cookie = "cook1=yandex/organic;"
 			}
 		</script>
 	</body>
